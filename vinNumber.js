@@ -43,8 +43,8 @@ function encryptVIN(vinNumber) {
       result += encryptCaracters[index].toString();
     }
 
-    console.log(encryptCaracters);
     console.log(`VIN encrypted: ${result}`);
+
     return encryptCaracters;
   }
 }
@@ -75,11 +75,15 @@ function decryptVIN(encrypt) {
       const string = String.fromCharCode(decryptedCaracters[index]);
       caractersFinal.push(string);
     }
-    
-    console.log(decryptedCaracters);
-    console.log(caractersFinal);
+
+    for (let index = 0; index < caractersFinal.length; index += 1) {
+      result += caractersFinal[index].toString();
+    }
+
+    console.log(`VIN decrypted: ${result}`);
   }
 }
 
+console.log(`Original VIN: ${vin}`);
 const encryptedVIN = encryptVIN(vin);
 decryptVIN(encryptedVIN)
