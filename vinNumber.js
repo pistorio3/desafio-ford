@@ -1,9 +1,12 @@
+// VIN number exemplo
 const vin = '1HGCM82633A004352';
+
+const keys = [2, 4];
 
 // Função de criptografia
 function encryptVIN(vinNumber) {
   // chaves para alterar os charCodes
-  const keys = [2, 4];
+  
 
   // Verifica se foi passado algo como parâmetro
   if(!vinNumber) {
@@ -14,33 +17,43 @@ function encryptVIN(vinNumber) {
 
     const caractersToAscii = [];
     const encryptCaracters = [];
+    let result = '';
 
     // Itera por toda a string do VIN number e guarda o charCode de cada caracter
-    for (let index = 0; index < vinNumber.length; index += 1) {
-      caractersToAscii.push(vinNumber[index].charCodeAt());
+    for (let index = 0; index < stringConverted.length; index += 1) {
+      caractersToAscii.push(stringConverted[index].charCodeAt());
     }
 
     // Altera o charCode de cada caracter gerando assim os valores finais criptografados
     for (let index = 0; index < caractersToAscii.length; index += 1) {
-      // Número par
+      // Número par soma 2
       if (vinNumber[index] % 2 === 0) {
         const number = caractersToAscii[index] + keys[0];
         encryptCaracters.push(number);
+      // Número ímpar soma 4 
       } else {
         const number = caractersToAscii[index] + keys[1];
         encryptCaracters.push(number);
       }
     }
 
-    console.log(caractersToAscii);
-    console.log(encryptCaracters);
+    // Salva em uma string final com o VIN criptografado
+    for (let index = 0; index < encryptCaracters.length; index += 1) {
+      result += encryptCaracters[index].toString();
+    }
+
+    console.log(`VIN encrypted: ${result}`);
   }
 }
 
 // Função de descriptografia
 function decryptVIN(encrypt) {
-
+  if(!encrypt) {
+    console.log('Informe um VIN number criptografado !!!');
+  } else {
+    const stringConverted = encrypt.toString();
+    fromCharCode
+  }
 }
 
-encryptVIN()
 encryptVIN(vin)
