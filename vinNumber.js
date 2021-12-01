@@ -59,6 +59,7 @@ function decryptVIN(encrypt) {
     const decryptedCaracters = [];
     let result = '';
 
+    // Altera o charCode de cada caracter gerando assim os valores finais descriptografados
     for (let index = 0; index < encrypt.length; index += 1) {
       // Número par retira 2
       if (Number(encrypt[index]) % 2 === 0) {
@@ -71,11 +72,13 @@ function decryptVIN(encrypt) {
       }
     }
 
+    // Itera por toda a string do VIN number e guarda a string referente ao charCode de cada caracter
     for (let index = 0; index < decryptedCaracters.length; index += 1) {
       const string = String.fromCharCode(decryptedCaracters[index]);
       caractersFinal.push(string);
     }
 
+    // Salva em uma string final com o VIN descriptografado
     for (let index = 0; index < caractersFinal.length; index += 1) {
       result += caractersFinal[index].toString();
     }
