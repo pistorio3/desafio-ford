@@ -15,6 +15,7 @@ function encryptVIN(vinNumber) {
     // Converte o valor passado como parametro para string
     const stringConverted = vinNumber.toString();
 
+    // Variáveis
     const caractersToAscii = [];
     const encryptCaracters = [];
     let result = '';
@@ -42,7 +43,9 @@ function encryptVIN(vinNumber) {
       result += encryptCaracters[index].toString();
     }
 
+    console.log(encryptCaracters);
     console.log(`VIN encrypted: ${result}`);
+    return encryptCaracters;
   }
 }
 
@@ -51,9 +54,31 @@ function decryptVIN(encrypt) {
   if(!encrypt) {
     console.log('Informe um VIN number criptografado !!!');
   } else {
-    const stringConverted = encrypt.toString();
-    fromCharCode
+    // Variáveis
+    const caractersFinal = [];
+    const decryptedCaracters = [];
+    let result = '';
+
+    for (let index = 0; index < encrypt.length; index += 1) {
+      // Número par retira 2
+      if (Number(encrypt[index]) % 2 === 0) {
+        const number = Number(encrypt[index]) - keys[0];
+        decryptedCaracters.push(number);
+      // Número ímpar retira 4 
+      } else {
+        const number = Number(encrypt[index]) - keys[1];
+        decryptedCaracters.push(number);
+      }
+    }
+
+    for (let index = 0; index < decryptedCaracters.length; index += 1) {
+      caractersFinal.push(fromCharCode(decryptedCaracters[index]));
+    }
+    
+    console.log(decryptedCaracters);
+    console.log(caractersFinal);
   }
 }
 
-encryptVIN(vin)
+const encryptedVIN = encryptVIN(vin);
+decryptVIN(encryptedVIN)
