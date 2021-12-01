@@ -72,7 +72,8 @@ function decryptVIN(encrypt) {
     }
 
     for (let index = 0; index < decryptedCaracters.length; index += 1) {
-      caractersFinal.push(fromCharCode(decryptedCaracters[index]));
+      const string = String.fromCharCode(decryptedCaracters[index]);
+      caractersFinal.push(string);
     }
     
     console.log(decryptedCaracters);
